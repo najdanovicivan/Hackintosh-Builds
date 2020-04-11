@@ -1,13 +1,13 @@
 ## Hardware Specifications
 
-Mobo: BRI5H-8250
-BIOS Version: F5
-CPU: Intel Core i5-8250
-GPU: Intel UHD620
-RAM: 16GB DDR4
-NVME: Samsung SSD 970 PRO 512GB
-LAN: Intel I219V
-WIFI+BT: BCM94360CD
+`Mobo: BRI5H-8250`
+`BIOS Version: F5`
+`CPU: Intel Core i5-8250`
+`GPU: Intel UHD620`
+`RAM: 16GB DDR4`
+`NVME: Samsung SSD 970 PRO 512GB`
+`LAN: Intel I219V`
+`WIFI+BT: BCM94360CD`
 
 #### Working
 

@@ -208,16 +208,24 @@
 		<dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
-				<key>AAPL,ig-platform-id</key>
-				<data>AAAWWQ==</data>
-				<key>device-id</key>
-				<data>FlkAAA==</data>
-				<key>enable-dpcd-max-link-rate-fix</key>
-				<data>AQAAAA==</data>
 				<key>#framebuffer-patch-enable</key>
 				<data>AQAAAA==</data>
 				<key>#framebuffer-unifiedmem</key>
 				<data>AADw/w==</data>
+				<key>AAPL,ig-platform-id</key>
+				<data>AAAWWQ==</data>
+				<key>complete-modeset</key>
+				<data>AQAAAA==</data>
+				<key>device-id</key>
+				<data>FlkAAA==</data>
+				<key>enable-dpcd-max-link-rate-fix</key>
+				<data>AQAAAA==</data>
+				<key>enable-lspcon-support</key>
+				<data>AQAAAA==</data>
+				<key>force-online</key>
+				<data>AQAAAA==</data>
+				<key>framebuffer-con2-has-lspcon</key>
+				<data>AQAAAA==</data>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x1F,0x3)</key>
 			<dict>
@@ -378,13 +386,13 @@
 			</dict>
 			<dict>
 				<key>BundlePath</key>
-				<string>RTCMemoryFixup.kext</string>
+				<string>HibernationFixup.kext</string>
 				<key>Comment</key>
 				<string></string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
-				<string>Contents/MacOS/RTCMemoryFixup</string>
+				<string>Contents/MacOS/HibernationFixup</string>
 				<key>MaxKernel</key>
 				<string></string>
 				<key>MinKernel</key>
@@ -394,13 +402,13 @@
 			</dict>
 			<dict>
 				<key>BundlePath</key>
-				<string>HibernationFixup.kext</string>
+				<string>RTCMemoryFixup.kext</string>
 				<key>Comment</key>
 				<string></string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
-				<string>Contents/MacOS/HibernationFixup</string>
+				<string>Contents/MacOS/RTCMemoryFixup</string>
 				<key>MaxKernel</key>
 				<string></string>
 				<key>MinKernel</key>
@@ -484,15 +492,15 @@
 		<key>Debug</key>
 		<dict>
 			<key>AppleDebug</key>
-			<false/>
+			<true/>
 			<key>DisableWatchDog</key>
-			<false/>
+			<true/>
 			<key>DisplayDelay</key>
 			<integer>0</integer>
 			<key>DisplayLevel</key>
-			<integer>0</integer>
+			<integer>2147483714</integer>
 			<key>Target</key>
-			<integer>0</integer>
+			<integer>3</integer>
 		</dict>
 		<key>Entries</key>
 		<array/>
@@ -532,7 +540,7 @@
 				<key>SystemAudioVolume</key>
 				<data>Rg==</data>
 				<key>boot-args</key>
-				<string>-v</string>
+				<string>-hbfx-disable-patch-pci  -v</string>
 				<key>csr-active-config</key>
 				<data>5wMAAA==</data>
 				<key>prev-lang:kbd</key>

@@ -1,13 +1,6 @@
 ## Hardware Specifications
 
-Mobo: BRI5H-8250<br/>
-BIOS Version: F5<br/>
-CPU: Intel Core i5-8250<br/>
-GPU: Intel UHD620<br/>
-RAM: 16GB DDR4<br/>
-NVME: Samsung SSD 970 PRO 512GB<br/>
-LAN: Intel I219<br/>
-WIFI+BT: BCM94360CD<br/>
+Mobo: BRI5H-8250<br/>BIOS Version: F5<br/>CPU: Intel Core i5-8250<br/>GPU: Intel UHD620<br/>RAM: 16GB DDR4<br/>NVME: Samsung SSD 970 PRO 512GB<br/>LAN: Intel I219<br/>WIFI+BT: BCM94360CD<br/>
 
 #### Working
 
@@ -100,7 +93,10 @@ Sources and original dump can be found in ACPI directory.
 - PciRoot(0x0)/Pci(0x2,0x0) - GPU
   - device-id = 0x80865919 - GPU Is not natively supported so we need fake id
   - AAPL,ig-platform-id = 0x5916000 - Connectors LVDS + DP + HDMI 
-  - enable-dpcd-max-link-rate-fix = 1 - Fixes issue with 4K
+  - enable-dpcd-max-link-rate-fix = 0x01000000 - Fixes issue with 4K
+  - enable-lspcon-support =  0x01000000  - Enables LSPCON driver
+  - framebuffer-con2-has-lspcon = 0x01000000 - Enables LSPCON on HDMI - Fixes 4K@30Hz on wake
+  - complete-modeset =  0x01000000 - Fixes ocasional black screen on boot
   - #framebuffer-patch-enable = 1 and #framebuffer-unifiedmem 0000F0FF  - 4GB VRAM Disabled by default
 - PciRoot(0x0)/Pci(0x1F,0x3) - HD Audio
   - layout-id  = 0F000000 - Layout ID 15 - Added by me in AppleALC specifically for BRI5H-8250
@@ -115,8 +111,8 @@ Sources and original dump can be found in ACPI directory.
 - [NVMeFix](https://github.com/acidanthera/NVMeFix) - 1.0.2 - Power management for NVMe
 - [USBInjectAll](https://github.com/Sniki/OS-X-USB-Inject-All) - 0.7.3 - USB Injection - **As of now version 0.7.5 is broken does not load**
 - [IntelMausiEthernet](https://github.com/acidanthera/IntelMausi) - Lan Driver
+- [Hibernation Fixup](https://github.com/lvs1974/HibernationFixup) -  Fixes Sleep and Hibernation
 - [RTCMemoryFixup](https://github.com/acidanthera/RTCMemoryFixup) -  **Untested** Fixes RTC 
-- [Hibernation Fixup](https://github.com/lvs1974/HibernationFixup) - **Untested** Fixes Hibernation
 
 #### Kernel Quirks
 
@@ -139,13 +135,18 @@ Some values are set by default:
 - 4D1EDE05-38C7-4A6A-9CC6-4BCCA8B38C14:DefaulBakcgroundColor : 00000000 Black
 - 4D1EDE05-38C7-4A6A-9CC6-4BCCA8B38C14:UIScale: 02 HiDPI - For non HiDPI use 01
 - 7C436110-AB2A-4BBB-A880-FE41995C9F82:SystemAudioVolume: 46
-- 7C436110-AB2A-4BBB-A880-FE41995C9F82:boot-args: -v - Verbose Boot
+- 7C436110-AB2A-4BBB-A880-FE41995C9F82:boot-args:-hbfx-disable-patch-pci -v
 - 7C436110-AB2A-4BBB-A880-FE41995C9F82:csr-active-config: E7030000 - CSR System Protection Disabled
 - 7C436110-AB2A-4BBB-A880-FE41995C9F82:prev-lang:kbd - en:US
 
+##### boot-args
+
+- -hbfx-disable-patch-pci : Fixes IGPU wake
+- -v : Verbose Boot
+
 #### PlatformInfo
 
-**SMBIOS : Macmini8,1**
+SMBIOS : Macmini8,1
 
 Before using the config file you should add prameters into **Generic** section related to serial numbers. [MacInfoPkg](https://github.com/acidanthera/MacInfoPkg) can be used to generate Serial Number and MLB. The values that need to be set:
 
